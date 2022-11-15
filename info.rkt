@@ -1,6 +1,6 @@
 #lang info
 (define collection "weaviate-racket-client")
-(define deps '("base"))
+(define deps '("base" "http-easy-lib"))
 (define build-deps '("scribble-lib" "racket-doc" "rackunit-lib"))
 (define scribblings '(("scribblings/weaviate-racket-client.scrbl" ())))
 (define pkg-desc "Description Here")
