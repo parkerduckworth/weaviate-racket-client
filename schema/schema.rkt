@@ -5,15 +5,10 @@
 (require "../client/client.rkt")
 (require "../http/http.rkt")
 
-(provide (struct-out schema))
-(provide (struct-out class))
 (provide get-schema)
 (provide get-class)
-
-;; TODO: support entire class object
-(struct class [name properties] #:transparent)
-
-(struct schema [classes] #:transparent)
+(provide create-class)
+(provide delete-class)
 
 (define (schema-url client)
   (string-append 
@@ -28,17 +23,17 @@
 
 (define (get-schema client)
   (define resp (get-req (schema-url client)))
-  (define classes (hash-ref resp 'classes))
-  (schema (parse-classes classes)))
+  resp)
 
 (define (get-class client name)
   (define resp (get-req (class-url client name)))
-  (parse-class resp))
+  resp)
 
-(define (parse-classes classes)
-  (map parse-class classes))
+(define (create-class client cls)
+  (define body cls)
+  (define resp (post-req (schema-url client) body))
+  resp)
 
-(define (parse-class cls)
-  (class 
-    (hash-ref cls 'class)
-    (hash-ref cls 'properties)))
+(define (delete-class client name)
+  (define resp (delete-req (class-url client name)))
+  resp)

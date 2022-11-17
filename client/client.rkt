@@ -2,4 +2,4 @@
 
 (provide (struct-out weaviate-client))
 
-(struct weaviate-client (hostname))
+(struct weaviate-client [hostname] #:transparent)

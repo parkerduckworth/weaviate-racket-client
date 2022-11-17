@@ -4,10 +4,7 @@
 (require "../client/client.rkt")
 (require "../http/http.rkt")
 
-(provide (struct-out meta))
 (provide get-meta)
-
-(struct meta [hostname modules version] #:transparent)
 
 (define (url client)
   (string-append 
@@ -16,7 +13,4 @@
 
 (define (get-meta client)
   (define resp (get-req (url client)))
-  (meta
-   (hash-ref resp 'hostname)
-   (hash-ref resp 'modules)
-   (hash-ref resp 'version)))
+  resp)
