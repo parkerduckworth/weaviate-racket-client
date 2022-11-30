@@ -8,6 +8,7 @@
 (provide get-schema)
 (provide get-class)
 (provide create-class)
+(provide update-class)
 (provide delete-class)
 
 (define (schema-url client)
@@ -32,6 +33,13 @@
 (define (create-class client cls)
   (define body cls)
   (define resp (post-req (schema-url client) body))
+  resp)
+
+(define (update-class client cls)
+  (define body cls)
+  (define name (hash-ref cls 'class))
+  (define url (class-url client name))
+  (define resp (put-req url body))
   resp)
 
 (define (delete-class client name)

@@ -5,6 +5,7 @@
 
 (provide get-req)
 (provide post-req)
+(provide put-req)
 (provide delete-req)
 
 (define (get-req url)
@@ -13,6 +14,10 @@
 (define (post-req url body)
   (handle-response
     (post url #:json body)))
+
+(define (put-req url body)
+  (handle-response
+    (put url #:json body)))
 
 (define (delete-req url)
   (handle-response (delete url)))
