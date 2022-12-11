@@ -23,8 +23,6 @@ jobs:
           version: ${{ matrix.racket-version }}
       - name: Installing weaviate-racket-client and its dependencies
         run: raco pkg install --no-docs --auto --name weaviate-racket-client
-      - name: Compiling weaviate-racket-client and building its docs
-        run: raco setup --check-pkg-deps --unused-pkg-deps weaviate-racket-client
       - name: Start test server
         run: ci/run_dependencies.sh
       - name: Run tests
